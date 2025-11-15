@@ -3,7 +3,7 @@
 from typing import Optional, Dict, Any, Union
 import os
 
-from .sync_client import TessaClient
+from .sync_client import AltrinaClient
 from .models import BrowserConfig, JobResult, ActionSelectionModel
 
 
@@ -17,7 +17,7 @@ class BrowserAgent:
         >>> print(result.output)
         
         >>> # Or using environment variable
-        >>> os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+        >>> os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
         >>> result = BrowserAgent().run("Extract prices from shop.example.com")
         
         >>> # Reusable agent
@@ -45,7 +45,7 @@ class BrowserAgent:
         Initialize a browser agent.
         
         Args:
-            api_key: Your Tessa API key (can also be set via TESSA_API_KEY env var)
+            api_key: Your Altrina API key (can also be set via ALTRINA_API_KEY env var)
             base_url: Override the base API URL (for testing/development)
             residential_ip: Use residential IP proxy for the browser
             viewport_width: Browser viewport width in pixels (320-4096)
@@ -54,7 +54,7 @@ class BrowserAgent:
             model: AI model for action selection
             verbose: Print status updates while running
         """
-        self.api_key = api_key or os.getenv("TESSA_API_KEY")
+        self.api_key = api_key or os.getenv("ALTRINA_API_KEY")
         self.base_url = base_url
         self.verbose = verbose
         self.model = model
@@ -68,13 +68,13 @@ class BrowserAgent:
         )
         
         # Client will be created on demand
-        self._client: Optional[TessaClient] = None
+        self._client: Optional[AltrinaClient] = None
     
     @property
-    def client(self) -> TessaClient:
+    def client(self) -> AltrinaClient:
         """Get or create the client instance."""
         if self._client is None:
-            self._client = TessaClient(
+            self._client = AltrinaClient(
                 api_key=self.api_key,
                 base_url=self.base_url
             )

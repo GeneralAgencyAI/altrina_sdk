@@ -1,13 +1,13 @@
 """
-Advanced configuration examples for the Tessa SDK.
+Advanced configuration examples for the Altrina SDK.
 
 This example demonstrates advanced features like custom browsers, 
 different AI models, and complex automation scenarios.
 """
 
 import os
-from tessa_sdk import TessaClient, BrowserConfig, ActionSelectionModel
-from tessa_sdk.exceptions import JobFailedError, TimeoutError
+from altrina import AltrinaClient, BrowserConfig, ActionSelectionModel
+from altrina.exceptions import JobFailedError, TimeoutError
 
 # Set your API key
 API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
@@ -19,7 +19,7 @@ def custom_browser_example():
     print("🖥️ Custom Browser Example")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     # Use your own browser instance
     # You need to start Chrome/Chromium with remote debugging enabled:
@@ -50,7 +50,7 @@ def different_ai_models():
     print("🤖 AI Model Comparison")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     task = "Go to wikipedia.org and find information about artificial intelligence, then summarize the main concepts in 3 bullet points"
     
@@ -108,7 +108,7 @@ def complex_workflow():
     print("🔄 Complex Multi-Step Workflow")
     print("-" * 50)
     
-    from tessa_sdk import BrowserAgent
+    from altrina import BrowserAgent
     
     agent = BrowserAgent(
         api_key=API_KEY,
@@ -180,7 +180,7 @@ def form_automation():
     print("📝 Form Automation Example")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     # Example: Fill out a complex contact form
     job = client.run_browser_agent(
@@ -231,7 +231,7 @@ def authentication_flow():
     print("🔐 Authentication Flow Example")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     # Example: Login and extract protected data
     job = client.run_browser_agent(
@@ -281,7 +281,7 @@ def mobile_viewport_example():
     print("📱 Mobile Viewport Example")
     print("-" * 50)
     
-    from tessa_sdk import BrowserAgent
+    from altrina import BrowserAgent
     
     # Create agent with mobile viewport
     mobile_agent = BrowserAgent(
@@ -314,8 +314,8 @@ def error_handling_example():
     print("⚠️ Error Handling Example")
     print("-" * 50)
     
-    from tessa_sdk import BrowserAgent
-    from tessa_sdk.exceptions import (
+    from altrina import BrowserAgent
+    from altrina.exceptions import (
         AuthenticationError,
         RateLimitError,
         JobFailedError,
@@ -366,7 +366,7 @@ def error_handling_example():
 def main():
     """Run advanced configuration examples."""
     
-    print("🚀 Tessa SDK - Advanced Configuration Examples")
+    print("🚀 Altrina SDK - Advanced Configuration Examples")
     print("=" * 60)
     
     examples = {
@@ -397,6 +397,6 @@ def main():
 
 if __name__ == "__main__":
     # Set API key via environment variable if preferred
-    # os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+    # os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
     
     main()

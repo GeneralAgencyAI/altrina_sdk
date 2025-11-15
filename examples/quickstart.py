@@ -1,13 +1,13 @@
 """
-Quickstart example for the Tessa SDK.
+Quickstart example for the Altrina SDK.
 
 This example demonstrates the simplest way to use the SDK with one line of code.
 """
 
 import os
-from tessa_sdk import BrowserAgent
+from altrina import BrowserAgent
 
-# Set your API key (or use environment variable TESSA_API_KEY)
+# Set your API key (or use environment variable ALTRINA_API_KEY)
 API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
 
 def main():
@@ -68,6 +68,6 @@ def main():
 
 if __name__ == "__main__":
     # You can also set the API key via environment variable
-    # os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+    # os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
     
     main()

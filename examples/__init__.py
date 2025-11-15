@@ -1,1 +1,1 @@
-"""Example scripts demonstrating Tessa SDK usage."""
+"""Example scripts demonstrating Altrina usage."""

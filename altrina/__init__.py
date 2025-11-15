@@ -1,20 +1,20 @@
 """
-Tessa SDK - Python SDK for the Tessa Browser Agent & Workflows API
+Altrina SDK - Python SDK for the Altrina Browser Agent & Workflows API
 
 Simple one-line usage:
-    >>> from tessa_sdk import BrowserAgent
+    >>> from altrina import BrowserAgent
     >>> result = BrowserAgent("YOUR_API_KEY").run("Go to example.com and extract the title")
 
 Advanced usage:
-    >>> from tessa_sdk import TessaClient
-    >>> client = TessaClient(api_key="YOUR_API_KEY")
+    >>> from altrina import AltrinaClient
+    >>> client = AltrinaClient(api_key="YOUR_API_KEY")
     >>> job = client.run_browser_agent(directive="...", browser_config={...})
     >>> result = job.wait_for_completion()
 """
 
 from .browser import BrowserAgent
-from .sync_client import TessaClient
-from .async_client import AsyncTessaClient
+from .sync_client import AltrinaClient
+from .async_client import AsyncAltrinaClient
 from .models import (
     BrowserConfig,
     JobStatus,
@@ -23,7 +23,7 @@ from .models import (
     ActionSelectionModel,
 )
 from .exceptions import (
-    TessaError,
+    AltrinaError,
     AuthenticationError,
     RateLimitError,
     JobNotFoundError,
@@ -38,8 +38,8 @@ __version__ = "0.1.0"
 __all__ = [
     # Main classes
     "BrowserAgent",
-    "TessaClient",
-    "AsyncTessaClient",
+    "AltrinaClient",
+    "AsyncAltrinaClient",
     # Models
     "BrowserConfig",
     "JobStatus",
@@ -47,7 +47,7 @@ __all__ = [
     "JobStatusEnum",
     "ActionSelectionModel",
     # Exceptions
-    "TessaError",
+    "AltrinaError",
     "AuthenticationError",
     "RateLimitError",
     "JobNotFoundError",

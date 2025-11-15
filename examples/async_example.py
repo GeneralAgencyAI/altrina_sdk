@@ -1,5 +1,5 @@
 """
-Async example for the Tessa SDK.
+Async example for the Altrina SDK.
 
 This example demonstrates how to use the async client for concurrent operations.
 """
@@ -7,13 +7,13 @@ This example demonstrates how to use the async client for concurrent operations.
 import asyncio
 import os
 from typing import List
-from tessa_sdk import AsyncTessaClient, JobResult
+from altrina import AsyncAltrinaClient, JobResult
 
 # Set your API key
 API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
 
 
-async def run_multiple_agents(client: AsyncTessaClient, tasks: List[str]) -> List[JobResult]:
+async def run_multiple_agents(client: AsyncAltrinaClient, tasks: List[str]) -> List[JobResult]:
     """Run multiple browser agents concurrently."""
     
     # Start all jobs concurrently
@@ -41,7 +41,7 @@ async def main():
     print("Async Browser Agent Examples")
     print("=" * 60)
     
-    async with AsyncTessaClient(api_key=API_KEY) as client:
+    async with AsyncAltrinaClient(api_key=API_KEY) as client:
         
         # Example 1: Single async job
         print("\nExample 1: Single async job")
@@ -127,7 +127,7 @@ async def main():
 
 if __name__ == "__main__":
     # Set API key via environment variable if not hardcoded
-    # os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+    # os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
     
     # Run the async main function
     asyncio.run(main())

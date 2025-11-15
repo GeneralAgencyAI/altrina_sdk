@@ -1,4 +1,4 @@
-"""Synchronous client for the Tessa API."""
+"""Synchronous client for the Altrina API."""
 
 import asyncio
 import threading
@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Optional, Dict, Any, Union
 import time
 
-from .async_client import AsyncTessaClient, AsyncJob
+from .async_client import AsyncAltrinaClient, AsyncJob
 from .models import (
     BrowserConfig,
     JobStatus,
@@ -20,7 +20,7 @@ from .exceptions import TimeoutError, JobFailedError
 class Job:
     """Represents a running job that can be polled for status."""
     
-    def __init__(self, client: "TessaClient", job_id: str, initial_response: dict):
+    def __init__(self, client: "AltrinaClient", job_id: str, initial_response: dict):
         self.client = client
         self.job_id = job_id
         self.initial_status = initial_response.get("status")
@@ -92,15 +92,15 @@ class Job:
     
     @property
     def url(self) -> str:
-        """Get the URL to view this job in the Tessa app."""
+        """Get the URL to view this job in the Altrina app."""
         return self.history_url
 
 
-class TessaClient:
+class AltrinaClient:
     """
-    Synchronous client for interacting with the Tessa API.
+    Synchronous client for interacting with the Altrina API.
     
-    This client provides a synchronous interface to the Tessa API, using
+    This client provides a synchronous interface to the Altrina API, using
     thread-based execution for async operations to ensure compatibility
     across different environments.
     """
@@ -113,11 +113,11 @@ class TessaClient:
         max_retries: int = 3
     ):
         """
-        Initialize the Tessa client.
+        Initialize the Altrina client.
         
         Args:
-            api_key: Your Tessa API key (can also be set via TESSA_API_KEY env var)
-            base_url: Override the base API URL (default: https://api.heytessa.ai/v1)
+            api_key: Your Altrina API key (can also be set via ALTRINA_API_KEY env var)
+            base_url: Override the base API URL (default: https://api.altrina.com/v1)
             timeout: Default timeout for API requests in seconds
             max_retries: Maximum number of retries for failed requests
         """
@@ -128,7 +128,7 @@ class TessaClient:
         
         # Thread pool for running async operations
         self._executor = ThreadPoolExecutor(max_workers=1)
-        self._async_client: Optional[AsyncTessaClient] = None
+        self._async_client: Optional[AsyncAltrinaClient] = None
         self._loop: Optional[asyncio.AbstractEventLoop] = None
     
     def _ensure_async_client(self):
@@ -137,7 +137,7 @@ class TessaClient:
             def create_client():
                 loop = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop)
-                client = AsyncTessaClient(
+                client = AsyncAltrinaClient(
                     api_key=self._api_key,
                     base_url=self._base_url,
                     timeout=self._timeout,
@@ -197,7 +197,7 @@ class TessaClient:
             Job object for tracking the job status
         
         Example:
-            >>> client = TessaClient(api_key="YOUR_API_KEY")
+            >>> client = AltrinaClient(api_key="YOUR_API_KEY")
             >>> job = client.run_browser_agent(
             ...     directive="Go to example.com and extract the title",
             ...     browser_config={"width": 1920, "height": 1080}
@@ -277,7 +277,7 @@ class TessaClient:
             JobResult with the final output or error
         
         Example:
-            >>> client = TessaClient(api_key="YOUR_API_KEY")
+            >>> client = AltrinaClient(api_key="YOUR_API_KEY")
             >>> result = client.run_and_wait(
             ...     "Go to example.com and extract the title",
             ...     verbose=True

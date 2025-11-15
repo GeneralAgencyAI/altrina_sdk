@@ -1,15 +1,15 @@
 """
-Synchronous client examples for the Tessa SDK.
+Synchronous client examples for the Altrina SDK.
 
-This example demonstrates using the TessaClient synchronous interface
+This example demonstrates using the AltrinaClient synchronous interface
 for browser automation tasks.
 """
 
 import os
 import json
 from datetime import datetime
-from tessa_sdk import TessaClient, BrowserConfig, JobStatus, ActionSelectionModel
-from tessa_sdk.exceptions import JobFailedError, TimeoutError, AuthenticationError
+from altrina import AltrinaClient, BrowserConfig, JobStatus, ActionSelectionModel
+from altrina.exceptions import JobFailedError, TimeoutError, AuthenticationError
 
 # Set your API key
 API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
@@ -22,7 +22,7 @@ def basic_sync_example():
     print("-" * 50)
     
     # Create a synchronous client
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     try:
         # Start a browser agent job
@@ -72,7 +72,7 @@ def context_manager_example():
     print("-" * 50)
     
     # Use context manager for automatic cleanup
-    with TessaClient(api_key=API_KEY) as client:
+    with AltrinaClient(api_key=API_KEY) as client:
         
         # Run and wait in one call
         result = client.run_and_wait(
@@ -112,7 +112,7 @@ def multiple_jobs_sequential():
     
     results = []
     
-    with TessaClient(api_key=API_KEY) as client:
+    with AltrinaClient(api_key=API_KEY) as client:
         for task in tasks:
             print(f"\n🔄 Running: {task['name']}")
             print(f"   Directive: {task['directive'][:50]}...")
@@ -169,7 +169,7 @@ def job_management_example():
     print("🎛️ Job Management Example")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     try:
         # Start a long-running job
@@ -242,7 +242,7 @@ def different_models_comparison():
     
     task = "Go to wikipedia.org and search for 'artificial intelligence', then extract a one-paragraph summary"
     
-    with TessaClient(api_key=API_KEY) as client:
+    with AltrinaClient(api_key=API_KEY) as client:
         for model in models:
             print(f"\n🔄 Testing model: {model.value}")
             
@@ -298,7 +298,7 @@ def error_handling_example():
         print(f"\n📝 Testing: {scenario['name']}")
         
         try:
-            client = TessaClient(api_key=scenario.get("api_key", API_KEY))
+            client = AltrinaClient(api_key=scenario.get("api_key", API_KEY))
             
             if scenario.get("timeout"):
                 result = client.run_and_wait(
@@ -333,7 +333,7 @@ def health_check_example():
     print("🏥 API Health Check")
     print("-" * 50)
     
-    with TessaClient(api_key=API_KEY) as client:
+    with AltrinaClient(api_key=API_KEY) as client:
         is_healthy = client.health_check()
         
         if is_healthy:
@@ -347,7 +347,7 @@ def health_check_example():
 def main():
     """Run sync client examples."""
     
-    print("🔄 Tessa SDK - Synchronous Client Examples")
+    print("🔄 Altrina SDK - Synchronous Client Examples")
     print("=" * 60)
     
     examples = {
@@ -389,6 +389,6 @@ def main():
 
 if __name__ == "__main__":
     # Set API key via environment variable if preferred
-    # os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+    # os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
     
     main()

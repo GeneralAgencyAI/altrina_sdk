@@ -1,5 +1,5 @@
 """
-Web scraping examples using the Tessa SDK.
+Web scraping examples using the Altrina SDK.
 
 This example demonstrates various web scraping scenarios.
 """
@@ -7,7 +7,7 @@ This example demonstrates various web scraping scenarios.
 import os
 import json
 from datetime import datetime
-from tessa_sdk import TessaClient, BrowserConfig
+from altrina import AltrinaClient, BrowserConfig
 
 # Set your API key
 API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
@@ -19,7 +19,7 @@ def scrape_ecommerce_products():
     print("📦 E-commerce Product Scraping")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     job = client.run_browser_agent(
         directive="""
@@ -68,7 +68,7 @@ def scrape_news_articles():
     print("📰 News Article Scraping")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     news_sources = [
         {
@@ -123,7 +123,7 @@ def scrape_social_media_stats():
     print("📱 Social Media Stats Scraping")
     print("-" * 50)
     
-    from tessa_sdk import BrowserAgent
+    from altrina import BrowserAgent
     
     agent = BrowserAgent(
         api_key=API_KEY,
@@ -165,7 +165,7 @@ def scrape_job_listings():
     print("💼 Job Listings Scraping")
     print("-" * 50)
     
-    from tessa_sdk import BrowserAgent
+    from altrina import BrowserAgent
     
     agent = BrowserAgent(api_key=API_KEY)
     
@@ -215,7 +215,7 @@ def scrape_real_estate():
     print("🏠 Real Estate Listings Scraping")
     print("-" * 50)
     
-    client = TessaClient(api_key=API_KEY)
+    client = AltrinaClient(api_key=API_KEY)
     
     # Complex real estate search
     job = client.run_browser_agent(
@@ -277,7 +277,7 @@ def scrape_real_estate():
 def main():
     """Run web scraping examples."""
     
-    print("🌐 Tessa SDK - Web Scraping Examples")
+    print("🌐 Altrina SDK - Web Scraping Examples")
     print("=" * 60)
     
     # Choose which example to run
@@ -313,6 +313,6 @@ def main():
 
 if __name__ == "__main__":
     # Set API key via environment variable if preferred
-    # os.environ["TESSA_API_KEY"] = "YOUR_API_KEY"
+    # os.environ["ALTRINA_API_KEY"] = "YOUR_API_KEY"
     
     main()

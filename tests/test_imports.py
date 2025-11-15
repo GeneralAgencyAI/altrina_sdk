@@ -5,20 +5,20 @@ import pytest
 
 def test_main_imports():
     """Test that main classes can be imported."""
-    from tessa_sdk import BrowserAgent, TessaClient, AsyncTessaClient
-    from tessa_sdk import BrowserConfig, JobStatus, JobResult, ActionSelectionModel
-    from tessa_sdk import TessaError, AuthenticationError, RateLimitError
+    from altrina import BrowserAgent, AltrinaClient, AsyncAltrinaClient
+    from altrina import BrowserConfig, JobStatus, JobResult, ActionSelectionModel
+    from altrina import AltrinaError, AuthenticationError, RateLimitError
     
     # Verify classes exist
     assert BrowserAgent is not None
-    assert TessaClient is not None
-    assert AsyncTessaClient is not None
+    assert AltrinaClient is not None
+    assert AsyncAltrinaClient is not None
     assert BrowserConfig is not None
     
 
 def test_model_enums():
     """Test that model enums work correctly."""
-    from tessa_sdk import ActionSelectionModel
+    from altrina import ActionSelectionModel
     
     assert ActionSelectionModel.CLAUDE_SONNET.value == "claude-sonnet-4-20250514"
     assert ActionSelectionModel.GPT_4O.value == "gpt-4o"
@@ -30,7 +30,7 @@ def test_model_enums():
 
 def test_browser_config():
     """Test BrowserConfig model."""
-    from tessa_sdk import BrowserConfig
+    from altrina import BrowserConfig
     
     config = BrowserConfig()
     assert config.width == 1920
@@ -52,15 +52,15 @@ def test_browser_config():
 
 def test_exceptions():
     """Test custom exceptions."""
-    from tessa_sdk.exceptions import (
-        TessaError,
+    from altrina.exceptions import (
+        AltrinaError,
         AuthenticationError,
         JobFailedError,
         ValidationError
     )
     
     # Test base exception
-    err = TessaError("Test error", {"detail": "test"})
+    err = AltrinaError("Test error", {"detail": "test"})
     assert str(err) == "Test error"
     assert err.details == {"detail": "test"}
     

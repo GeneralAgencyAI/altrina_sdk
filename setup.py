@@ -1,4 +1,4 @@
-"""Setup script for tessa_sdk package."""
+"""Setup script for altrina package."""
 
 from setuptools import setup, find_packages
 
@@ -7,15 +7,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="tessa_sdk",
+    name="altrina",
     version="0.1.0",
-    author="Tessa Team",
+    author="Altrina Team",
     author_email="support@generalagency.ai",
-    description="Python SDK for the Tessa Browser Agent & Workflows API",
+    description="Python SDK for the Altrina Browser Agent & Workflows API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/GeneralAgencyAI/tessa_sdk",
-    packages=find_packages(include=["tessa_sdk*"]),
+    url="https://github.com/GeneralAgencyAI/altrina_sdk",
+    packages=find_packages(include=["altrina*"]),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -50,9 +50,9 @@ setup(
         ]
     },
     project_urls={
-        "Homepage": "https://heytessa.ai",
-        "Documentation": "https://docs.heytessa.ai",
-        "Repository": "https://github.com/GeneralAgencyAI/tessa_sdk",
-        "Issues": "https://github.com/GeneralAgencyAI/tessa_sdk/issues",
+        "Homepage": "https://altrina.com",
+        "Documentation": "https://docs.altrina.com",
+        "Repository": "https://github.com/GeneralAgencyAI/altrina_sdk",
+        "Issues": "https://github.com/GeneralAgencyAI/altrina_sdk/issues",
     },
 )

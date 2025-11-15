@@ -1,18 +1,18 @@
-# Tessa SDK for Python
+# Altrina SDK for Python
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-The official Python SDK for the [Tessa Browser Agent API](https://heytessa.ai) - AI-powered browser automation with **93% accuracy on WebVoyager**.
+The official Python SDK for the [Altrina Browser Agent API](https://altrina.com) - AI-powered browser automation with **93% accuracy on WebVoyager**.
 
 ## 🚀 Quick Start
 
 ```bash
-pip install tessa_sdk
+pip install altrina
 ```
 
 ```python
-from tessa_sdk import BrowserAgent
+from altrina import BrowserAgent
 
 # One-line browser automation
 result = BrowserAgent("YOUR_API_KEY").run("Go to news.ycombinator.com and get the top 5 stories")
@@ -31,14 +31,14 @@ print(result.output)
 
 ## 🔑 Authentication
 
-Get your API key from [app.heytessa.ai/settings](https://app.heytessa.ai/settings)
+Get your API key from [app.altrina.com/settings](https://app.altrina.com/settings)
 
 ```python
 # Method 1: Pass directly
 agent = BrowserAgent("YOUR_API_KEY")
 
 # Method 2: Environment variable
-export TESSA_API_KEY="YOUR_API_KEY"
+export ALTRINA_API_KEY="YOUR_API_KEY"
 agent = BrowserAgent()  # Uses env var
 ```
 
@@ -47,7 +47,7 @@ agent = BrowserAgent()  # Uses env var
 ### Simple Usage
 
 ```python
-from tessa_sdk import BrowserAgent
+from altrina import BrowserAgent
 
 agent = BrowserAgent("YOUR_API_KEY")
 
@@ -73,10 +73,10 @@ result = agent.fill_form(
 ### Synchronous Client
 
 ```python
-from tessa_sdk import TessaClient, BrowserConfig
+from altrina import AltrinaClient, BrowserConfig
 
 # Using context manager for automatic cleanup
-with TessaClient(api_key="YOUR_API_KEY") as client:
+with AltrinaClient(api_key="YOUR_API_KEY") as client:
     # Run and wait for completion
     result = client.run_and_wait(
         directive="Extract pricing data from the products page",
@@ -91,7 +91,7 @@ with TessaClient(api_key="YOUR_API_KEY") as client:
     print(f"Credits used: {result.credits_used}")
 
 # Or manage jobs manually
-client = TessaClient(api_key="YOUR_API_KEY")
+client = AltrinaClient(api_key="YOUR_API_KEY")
 job = client.run_browser_agent(
     directive="Extract data from multiple pages",
     initial_url="https://shop.example.com"
@@ -111,10 +111,10 @@ client.close()
 
 ```python
 import asyncio
-from tessa_sdk import AsyncTessaClient
+from altrina import AsyncAltrinaClient
 
 async def run_multiple():
-    async with AsyncTessaClient(api_key="YOUR_API_KEY") as client:
+    async with AsyncAltrinaClient(api_key="YOUR_API_KEY") as client:
         # Start multiple jobs concurrently
         jobs = await asyncio.gather(
             client.run_browser_agent("Extract from site1.com"),
@@ -153,12 +153,12 @@ agent = BrowserAgent(
 result = agent.run(directive, initial_url=None, timeout=None)
 ```
 
-### TessaClient
+### AltrinaClient
 
 Full-featured client with job management:
 
 ```python
-client = TessaClient(api_key="YOUR_API_KEY")
+client = AltrinaClient(api_key="YOUR_API_KEY")
 
 job = client.run_browser_agent(
     directive="Your instruction",
@@ -172,7 +172,7 @@ result = job.wait_for_completion()
 ### Models
 
 ```python
-from tessa_sdk import BrowserConfig, ActionSelectionModel
+from altrina import BrowserConfig, ActionSelectionModel
 
 config = BrowserConfig(
     width=1920,              # 320-4096
@@ -191,7 +191,7 @@ ActionSelectionModel.GEMINI_FLASH
 ## 🛡️ Error Handling
 
 ```python
-from tessa_sdk.exceptions import *
+from altrina.exceptions import *
 
 try:
     result = agent.run("Extract data")
@@ -245,7 +245,7 @@ result = agent.run("""
 
 - **1 credit** per browser action
 - **1,000 free credits** for new accounts
-- Check balance: [app.heytessa.ai/settings](https://app.heytessa.ai/settings)
+- Check balance: [app.altrina.com/settings](https://app.altrina.com/settings)
 
 ```python
 result = agent.run("Your task")
@@ -254,9 +254,9 @@ print(f"Credits used: {result.credits_used}")
 
 ## 📞 Support
 
-- **Docs**: [docs.heytessa.ai](https://docs.heytessa.ai)
+- **Docs**: [docs.altrina.com](https://docs.altrina.com)
 - **Email**: [support@generalagency.ai](mailto:support@generalagency.ai)
-- **Issues**: [GitHub Issues](https://github.com/GeneralAgencyAI/tessa_sdk/issues)
+- **Issues**: [GitHub Issues](https://github.com/GeneralAgencyAI/altrina_sdk/issues)
 
 ## 📄 License
 

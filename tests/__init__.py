@@ -1,1 +1,1 @@
-"""Test suite for tessa_sdk."""
+"""Test suite for altrina."""

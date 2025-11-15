@@ -6,10 +6,10 @@ import time
 
 
 def test_sync_client_initialization():
-    """Test that TessaClient can be initialized."""
-    from tessa_sdk import TessaClient
+    """Test that AltrinaClient can be initialized."""
+    from altrina import AltrinaClient
     
-    client = TessaClient(api_key="test_key")
+    client = AltrinaClient(api_key="test_key")
     assert client._api_key == "test_key"
     assert client._timeout == 60.0
     assert client._max_retries == 3
@@ -17,10 +17,10 @@ def test_sync_client_initialization():
 
 
 def test_sync_client_context_manager():
-    """Test that TessaClient works as a context manager."""
-    from tessa_sdk import TessaClient
+    """Test that AltrinaClient works as a context manager."""
+    from altrina import AltrinaClient
     
-    with TessaClient(api_key="test_key") as client:
+    with AltrinaClient(api_key="test_key") as client:
         assert client is not None
         assert client._api_key == "test_key"
     # Client should be closed after exiting context
@@ -28,8 +28,8 @@ def test_sync_client_context_manager():
 
 def test_job_class():
     """Test the Job class functionality."""
-    from tessa_sdk.sync_client import Job
-    from tessa_sdk import JobStatusEnum, JobStatus
+    from altrina.sync_client import Job
+    from altrina import JobStatusEnum, JobStatus
     
     # Create a mock client
     mock_client = Mock()
@@ -65,8 +65,8 @@ def test_job_class():
 
 def test_job_wait_for_completion():
     """Test job wait_for_completion method."""
-    from tessa_sdk.sync_client import Job
-    from tessa_sdk import JobStatusEnum, JobStatus, JobResult
+    from altrina.sync_client import Job
+    from altrina import JobStatusEnum, JobStatus, JobResult
     
     mock_client = Mock()
     
@@ -105,9 +105,9 @@ def test_job_wait_for_completion():
 
 def test_job_wait_for_completion_timeout():
     """Test job timeout handling."""
-    from tessa_sdk.sync_client import Job
-    from tessa_sdk import JobStatusEnum, JobStatus
-    from tessa_sdk.exceptions import TimeoutError
+    from altrina.sync_client import Job
+    from altrina import JobStatusEnum, JobStatus
+    from altrina.exceptions import TimeoutError
     
     mock_client = Mock()
     
@@ -134,9 +134,9 @@ def test_job_wait_for_completion_timeout():
 
 def test_job_wait_for_completion_failed():
     """Test handling of failed jobs."""
-    from tessa_sdk.sync_client import Job
-    from tessa_sdk import JobStatusEnum, JobStatus
-    from tessa_sdk.exceptions import JobFailedError
+    from altrina.sync_client import Job
+    from altrina import JobStatusEnum, JobStatus
+    from altrina.exceptions import JobFailedError
     
     mock_client = Mock()
     
@@ -162,7 +162,7 @@ def test_job_wait_for_completion_failed():
 
 def test_browser_config():
     """Test BrowserConfig model."""
-    from tessa_sdk import BrowserConfig
+    from altrina import BrowserConfig
     
     # Default config
     config = BrowserConfig()

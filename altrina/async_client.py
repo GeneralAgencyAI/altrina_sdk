@@ -1,4 +1,4 @@
-"""Async client for the Tessa API."""
+"""Async client for the Altrina API."""
 
 import asyncio
 import os
@@ -18,7 +18,7 @@ from .models import (
     ActionSelectionModel,
 )
 from .exceptions import (
-    TessaError,
+    AltrinaError,
     AuthenticationError,
     RateLimitError,
     JobNotFoundError,
@@ -31,7 +31,7 @@ from .exceptions import (
 class AsyncJob:
     """Represents an async running job that can be polled for status."""
     
-    def __init__(self, client: "AsyncTessaClient", job_response: RunBrowserAgentResponse):
+    def __init__(self, client: "AsyncAltrinaClient", job_response: RunBrowserAgentResponse):
         self.client = client
         self.job_id = job_response.job_id
         self.initial_status = job_response.status
@@ -103,14 +103,14 @@ class AsyncJob:
     
     @property
     def url(self) -> str:
-        """Get the URL to view this job in the Tessa app."""
+        """Get the URL to view this job in the Altrina app."""
         return self.history_url
 
 
-class AsyncTessaClient:
-    """Async client for interacting with the Tessa API."""
+class AsyncAltrinaClient:
+    """Async client for interacting with the Altrina API."""
     
-    BASE_URL = "https://api.heytessa.ai/v1"
+    BASE_URL = "https://api.altrina.com/v1"
     
     def __init__(
         self,
@@ -120,17 +120,17 @@ class AsyncTessaClient:
         max_retries: int = 3
     ):
         """
-        Initialize the Tessa client.
+        Initialize the Altrina client.
         
         Args:
-            api_key: Your Tessa API key (can also be set via TESSA_API_KEY env var)
-            base_url: Override the base API URL (default: https://api.heytessa.ai/v1)
+            api_key: Your Altrina API key (can also be set via ALTRINA_API_KEY env var)
+            base_url: Override the base API URL (default: https://api.altrina.com/v1)
             timeout: Default timeout for API requests in seconds
             max_retries: Maximum number of retries for failed requests
         """
-        self.api_key = api_key or os.getenv("TESSA_API_KEY")
+        self.api_key = api_key or os.getenv("ALTRINA_API_KEY")
         if not self.api_key:
-            raise AuthenticationError("API key is required. Set it via constructor or TESSA_API_KEY environment variable")
+            raise AuthenticationError("API key is required. Set it via constructor or ALTRINA_API_KEY environment variable")
         
         self.base_url = (base_url or self.BASE_URL).rstrip("/")
         self.timeout = timeout
@@ -142,7 +142,7 @@ class AsyncTessaClient:
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
-                "User-Agent": "tessa_sdk-python/0.1.0"
+                "User-Agent": "altrina-python/0.1.0"
             },
             timeout=httpx.Timeout(timeout),
         )
@@ -176,7 +176,7 @@ class AsyncTessaClient:
             retry_after = response.headers.get("Retry-After")
             raise RateLimitError(retry_after=int(retry_after) if retry_after else None)
         else:
-            raise TessaError(
+            raise AltrinaError(
                 f"API request failed with status {response.status_code}",
                 {"status_code": response.status_code, "response": response.text}
             )

@@ -1,4 +1,4 @@
-"""Data models and types for the Tessa SDK."""
+"""Data models and types for the Altrina SDK."""
 
 from datetime import datetime
 from enum import Enum

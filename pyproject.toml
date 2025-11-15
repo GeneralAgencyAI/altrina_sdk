@@ -3,16 +3,16 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tessa_sdk"
+name = "altrina"
 version = "0.1.0"
-description = "Python SDK for the Tessa Browser Agent & Workflows API"
+description = "Python SDK for the Altrina Browser Agent & Workflows API"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Tessa Team", email = "support@generalagency.ai"}
+    {name = "Altrina Team", email = "support@generalagency.ai"}
 ]
 maintainers = [
-    {name = "Tessa Team", email = "support@generalagency.ai"}
+    {name = "Altrina Team", email = "support@generalagency.ai"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -48,14 +48,14 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://heytessa.ai"
-Documentation = "https://docs.heytessa.ai"
-Repository = "https://github.com/GeneralAgencyAI/tessa_sdk"
-Issues = "https://github.com/GeneralAgencyAI/tessa_sdk/issues"
+Homepage = "https://altrina.com"
+Documentation = "https://docs.altrina.com"
+Repository = "https://github.com/GeneralAgencyAI/altrina_sdk"
+Issues = "https://github.com/GeneralAgencyAI/altrina_sdk/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["tessa_sdk*"]
+include = ["altrina*"]
 
 [tool.black]
 line-length = 100
